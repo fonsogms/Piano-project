@@ -113,6 +113,8 @@ document.querySelector(".check").onclick=  function(){
 ;}
 document.querySelector(".ranKey").onclick=function(){
     pauseMusic();
+    timeOutArray.forEach(timeOut=>clearInterval(timeOut))
+
     level=[];
     playRandomNote();
     document.addEventListener("keydown",function(e){
