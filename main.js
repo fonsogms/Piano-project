@@ -24,27 +24,32 @@ const keys=[65,83,68,70,71,72,74,75,76,186,222,220];
 let level=[];
 let userInput=[];
 let randomNote;
+let timeOutArray = []
 
 function playRandom(){
     keys.forEach((keyPress,i)=>{
         let audio;
-        randomNote= keys[Math.floor(Math.random()*12)];
+        randomNote= keys[Math.floor(Math.random()*11)];
          audio=document.querySelector(`audio[data-key="${randomNote}"]`)
          level.push(randomNote)
-
+ //metemos la funcion de intervalo en un array 
+ //para luego poder pausarlo cuando queramos
+     timeOutArray.push(setTimeout(()=>{
+        audio.currentTime=0;
+        audio.play();
         setTimeout(()=>{
-            audio.play();
-            audio.currentTime=0;
-            return;
-        }, i * 1000)
-
-
+        audio.pause();
+        },1480)
+    }, i * 1500))   
+        
+        
     })
     return level;
 }
+
 function playRandomNote(){
-    let audio,
-    randomNote=keys[Math.floor(Math.random()*12)];
+    let audio;
+    randomNote=keys[Math.floor(Math.random()*11)];
     audio=document.querySelector(`audio[data-key="${randomNote}"]`);
     level.push(randomNote);
     audio.play();
@@ -54,6 +59,16 @@ function playRandomNote(){
 }
 
 
+
+function pauseMusic(){
+    let audio;
+    for (const key of keys){
+    audio=document.querySelector(`audio[data-key="${key}"]`);
+    audio.currentTime=100000;
+    audio.pause();
+    console.log(audio);
+    }
+}
 
 function checkUser(notes,userNotes){
     let note=notes.join("");
@@ -79,21 +94,25 @@ function checkUser(notes,userNotes){
 
   
 document.querySelector(".random").onclick=  function(){
+    
     level=[];
+    timeOutArray.forEach(timeOut=>clearInterval(timeOut))
     playRandom();
-    console.log(level);
     document.addEventListener("keydown",function(e){
         userInput.push(e.keyCode);
     })
+
     console.log(userInput)
 ;}
     
 document.querySelector(".check").onclick=  function(){
-        
+    timeOutArray.forEach(timeOut=>clearInterval(timeOut))
+
         checkUser(level,userInput);
         
 ;}
 document.querySelector(".ranKey").onclick=function(){
+    pauseMusic();
     level=[];
     playRandomNote();
     document.addEventListener("keydown",function(e){
@@ -116,10 +135,8 @@ window.addEventListener("keyup",function(e){
     const audio= document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key=document.querySelector(`div[data-key="${e.keyCode}"]`);
     if(!audio) return;
-  
     audio.pause();
     audio.currentTime=0;
     key.classList.remove("playing");
 
 })
-
