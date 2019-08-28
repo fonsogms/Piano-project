@@ -26,36 +26,54 @@ let userInput=[];
 let randomNote;
 
 function playRandom(){
-    let audio;
     keys.forEach((keyPress,i)=>{
+        let audio;
         randomNote= keys[Math.floor(Math.random()*12)];
+         audio=document.querySelector(`audio[data-key="${randomNote}"]`)
          level.push(randomNote)
-         audio= document.querySelector(`audio[data-key="${randomNote}"]`)
+
         setTimeout(()=>{
             audio.play();
             audio.currentTime=0;
-
-        }, i * 5)
+            return;
+        }, i * 1000)
 
 
     })
     return level;
 }
+function playRandomNote(){
+    let audio,
+    randomNote=keys[Math.floor(Math.random()*12)];
+    audio=document.querySelector(`audio[data-key="${randomNote}"]`);
+    level.push(randomNote);
+    audio.play();
+    audio.currentTime=0;
+    return level;
 
-function getUserNotes(){
-    
+}
 
-};
+
 
 function checkUser(notes,userNotes){
     let note=notes.join("");
-   let userNote=userNotes.join("");
-    console.log(notes);
-     if(note===userNote){
+    let userNote=userNotes;
+    function check(){if(note===userNote){
         console.log("awesome")
-     }
-     else console.log("no awesome :(");
+    }
+    else console.log("no awesome :(");
 
+    }
+    
+    if(userNotes.constructor===Array){
+         userNote=userNotes.join("");
+         check();
+
+    }
+    else{
+        check();
+    }
+    console.log(note+"+"+userNote)
 }
   
 
@@ -63,19 +81,25 @@ function checkUser(notes,userNotes){
 document.querySelector(".random").onclick=  function(){
     level=[];
     playRandom();
-    
+    console.log(level);
     document.addEventListener("keydown",function(e){
         userInput.push(e.keyCode);
     })
-    console.log(level)
+    console.log(userInput)
 ;}
     
 document.querySelector(".check").onclick=  function(){
         
-        checkUser([65,65],userInput);
+        checkUser(level,userInput);
         
 ;}
-
+document.querySelector(".ranKey").onclick=function(){
+    level=[];
+    playRandomNote();
+    document.addEventListener("keydown",function(e){
+        userInput=""+e.keyCode;
+    })
+}
 
 
 window.addEventListener("keydown",function(e){
@@ -91,7 +115,6 @@ window.addEventListener("keydown",function(e){
 window.addEventListener("keyup",function(e){
     const audio= document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key=document.querySelector(`div[data-key="${e.keyCode}"]`);
-    console.log(audio);
     if(!audio) return;
   
     audio.pause();
@@ -99,3 +122,4 @@ window.addEventListener("keyup",function(e){
     key.classList.remove("playing");
 
 })
+
