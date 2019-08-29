@@ -21,18 +21,20 @@ window.addEventListener("load", () => {
   });
 
 const keys=[49,50,51,52,53,54,55,56,57,48,222,187];
-let level=[];
+let randomSequence=[];
 let userInput=[];
 let randomNote;
 let timeOutArray = [];
 let speed=2;
-
-function playRandom(speedo){
-    keys.forEach((keyPress,i)=>{
+let sequence=4;
+let level=1;
+document.querySelector(".disLev").innerText="Level: "+ level;
+function playRandom(speedo,times){
+    for(let i=0;i<=times;i++){
         let audio;
         randomNote= keys[Math.floor(Math.random()*11)];
          audio=document.querySelector(`audio[data-key="${randomNote}"]`)
-         level.push(randomNote)
+         randomSequence.push(randomNote)
  //metemos la funcion de intervalo en un array 
  //para luego poder pausarlo cuando queramos
      timeOutArray.push(setTimeout(()=>{
@@ -44,18 +46,18 @@ function playRandom(speedo){
      }, i*speedo*1000))   
         
         
-    })
-    return level;
+    }
+    return randomSequence;
 }
 
 function playRandomNote(){
     let audio;
     randomNote=keys[Math.floor(Math.random()*11)];
     audio=document.querySelector(`audio[data-key="${randomNote}"]`);
-    level.push(randomNote);
+    randomSequence.push(randomNote);
     audio.play();
     audio.currentTime=0;
-    return level;
+    return randomSequence;
 
 }
 
@@ -75,7 +77,10 @@ function checkUser(notes,userNotes){
     let note=notes.join("");
     let userNote=userNotes;
     function check(){if(note===userNote){
-        speed=speed*0.8;
+        sequence+=1;
+        level+=1;
+        document.querySelector(".disLev").innerText="Level: "+ level;
+
         console.log("awesome")
         console.log(speed);
 
@@ -86,11 +91,16 @@ function checkUser(notes,userNotes){
     
     if(userNotes.constructor===Array){
          userNote=userNotes.join("");
+         speed=speed*0.8;
+
          check();
 
     }
     else{
+        level-=1;
+
         check();
+
     }
     console.log(note+"+"+userNote)
 }
@@ -107,17 +117,18 @@ document.querySelector(".random").onclick=  function(){
     document.removeEventListener("keydown", userKey)
 
     userInput=[];
-    level=[];
+    randomSequence=[];
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
-    playRandom(speed);
+    playRandom(speed,sequence);
     document.addEventListener("keydown", userKey)
+
 
 ;}
     
 document.querySelector(".check").onclick=  function(){
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
-        checkUser([49,49],userInput);
+        checkUser(randomSequence,userInput);
         userInput=[];
 
         
@@ -129,7 +140,7 @@ document.querySelector(".ranKey").onclick=function(){
 
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
-    level=[];
+    randomSequence=[];
     playRandomNote();
     document.addEventListener("keydown",function(e){
         userInput=""+e.keyCode;
@@ -156,3 +167,8 @@ window.addEventListener("keyup",function(e){
     key.classList.remove("playing");
 
 })
+document.querySelector(".stop").onclick=function(){
+    pauseMusic();
+    timeOutArray.forEach(timeOut=>clearInterval(timeOut))
+
+}
