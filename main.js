@@ -77,30 +77,42 @@ function checkUser(notes,userNotes){
     let note=notes.join("");
     let userNote=userNotes;
     function check(){if(note===userNote){
-        sequence+=1;
         level+=1;
         document.querySelector(".disLev").innerText="Level: "+ level;
-
+        speed=speed*0.8;
+         sequence+=1;
         console.log("awesome")
         console.log(speed);
 
     }
-    else console.log("no awesome :(");
-
+    else{ console.log("no awesome :(");
+    level=1;
+        document.querySelector(".disLev").innerText="Level: "+ level;}
+        
     }
     
     if(userNotes.constructor===Array){
          userNote=userNotes.join("");
-         speed=speed*0.8;
-
+         
          check();
+         
 
     }
     else{
         level-=1;
-
-        check();
-
+        if(note===userNote){
+            level+=1;
+            document.querySelector(".disLev").innerText="Level: "+ level;
+            
+            console.log("awesome")
+            console.log(speed);
+    
+        }
+        else{ console.log("no awesome :(");
+        level=1;
+        document.querySelector(".disLev").innerText="Level: "+ level;}
+        
+    
     }
     console.log(note+"+"+userNote)
 }
