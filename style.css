@@ -3,19 +3,59 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
+  .container{
+      display: flex;
+      justify-content: center;
+      justify-content: space-around;
+  }
+  .options{
+      display: flex;
+      justify-content: flex-start;
+  }
+  .players{
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+
+  }
+  .playSeq{
+      display: flex;
+      flex-direction: column;
+      align-content: space-between
+  }
+  .playKey{
+    display: flex;
+    flex-direction: column;
+}
+.central{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.dificulty{
+    display: flex;
+    flex-direction: column;
+}
+.levels{
+    display: flex;
+
+}
   body {
     font-family: "Raleway", sans-serif;
   }
   
   .app {
-    min-height: 100vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
   }
-  
+  header{
+      display: flex;
+      flex-direction: column;
+      align-content:space-around;
+  }
   header h1 {
     margin: 50px 0px 30px 0px;
     text-align: center;
@@ -36,11 +76,15 @@
   .playing{
 
 border-style: solid;
-border-width: 10px;
+border-width: 5px;
 border-color: yellow;
 
   }
+.disLev{
+    text-align: center;
+}
   .pads > div {
+    display: flex;
     height: 100px;
     width: 100px;
     flex: 1;
@@ -124,6 +168,10 @@ border-color: yellow;
 
     background: red;
   }
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
 
   h1 {
       color: white;
@@ -131,4 +179,5 @@ border-color: yellow;
   }
   
   
+
   

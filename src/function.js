@@ -34,11 +34,13 @@ function playRandomNote(){
     let audio;
     randomNote=keys[Math.floor(Math.random()*11)];
     audio=document.querySelector(`audio[data-key="${randomNote}"]`);
-    
+    key=document.querySelector(`div[data-key="${randomNote}"]`);
+    key.classList.add("playing");
+
     randomSequence.push(randomNote);
     audio.play();
     audio.currentTime=0;
-    
+
     return randomSequence;
 
 }
@@ -58,28 +60,31 @@ function pauseMusic(){
 function checkUser(notes,userNotes){
     let note=notes.join("");
     let userNote=userNotes;
-    function check(){if(note===userNote){
-        level+=1;
-        document.querySelector(".disLev").innerText="Level: "+ level;
-        speed=speed*0.8;
-         sequence+=1;
-        console.log("awesome")
-        console.log(speed);
-
-    }
-    else{ console.log("no awesome :(");
-        level=1;
-        speed=2;
-         sequence=1;
-        document.querySelector(".disLev").innerText="Level: "+ level;}
-        
-    }
     
+
     if(userNotes.constructor===Array){
          userNote=userNotes.join("");
          
-         check();
-         
+         if(note===userNote){
+            level+=1;
+            document.querySelector(".disLev").innerText="Level: "+ level;
+            document.querySelector(".result").innerText="Correct! Play next level"
+
+            speed=speed*0.8;
+             sequence+=1;
+            console.log("awesome")
+            console.log(speed);
+
+    
+        }
+        else{ console.log("no awesome :(");
+            level=1;
+            speed=2;
+             sequence=1;
+            document.querySelector(".disLev").innerText="Level: "+ level;
+            document.querySelector(".result").innerText="Incorrect! You start again!"
+
+        }
 
     }
     else{
@@ -87,14 +92,17 @@ function checkUser(notes,userNotes){
         if(note===userNote){
             level+=1;
             document.querySelector(".disLev").innerText="Level: "+ level;
-            
+            document.querySelector(".result").innerText="Correct!"
             console.log("awesome")
             console.log(speed);
     
         }
         else{ console.log("no awesome :(");
         level=1;
-        document.querySelector(".disLev").innerText="Level: "+ level;}
+        document.querySelector(".disLev").innerText="Level: "+ level;
+        document.querySelector(".result").innerText="Wrong keynote! Try again"
+
+        }
         
     
     }
