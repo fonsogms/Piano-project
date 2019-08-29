@@ -26,7 +26,6 @@ document.querySelector(".ranKey").onclick=function(){
     pauseMusic();
     document.removeEventListener("keyup", userKey)
 
-    timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
     randomSequence=[];
     playRandomNote();
@@ -36,6 +35,22 @@ document.querySelector(".ranKey").onclick=function(){
     })
 }
 
+document.querySelector(".hard").onclick=function(){
+    let pads = document.querySelectorAll(".pads div");
+    pads.forEach((pad, index) => {
+        pad.style.borderWidth = "0";
+        });
+      
+    
+}
+document.querySelector(".easy").onclick=function(){
+    let pads = document.querySelectorAll(".pads div");
+    pads.forEach((pad, index) => {
+        pad.style.borderWidth = "10px";
+        });
+      
+    
+}
 
 window.addEventListener("keydown",function(e){
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))

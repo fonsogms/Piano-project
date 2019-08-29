@@ -20,11 +20,13 @@ function playRandom(speedo,times){
         setTimeout(()=>{
         audio.pause();
         key.classList.remove("playing")
+        audio.currentTime=0
         },speedo*1000-50)
      }, i*speedo*1000))   
         
         
     }
+
     return randomSequence;
 }
 
@@ -36,7 +38,7 @@ function playRandomNote(){
     randomSequence.push(randomNote);
     audio.play();
     audio.currentTime=0;
-
+    
     return randomSequence;
 
 }
@@ -66,7 +68,9 @@ function checkUser(notes,userNotes){
 
     }
     else{ console.log("no awesome :(");
-    level=1;
+        level=1;
+        speed=2;
+         sequence=1;
         document.querySelector(".disLev").innerText="Level: "+ level;}
         
     }
@@ -99,6 +103,7 @@ function checkUser(notes,userNotes){
   
 function userKey(e) {
     console.log("Hello")
+
     userInput.push(e.keyCode);
 
 }
