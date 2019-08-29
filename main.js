@@ -20,13 +20,14 @@ window.addEventListener("load", () => {
     
   });
 
-const keys=[65,83,68,70,71,72,74,75,76,186,222,220];
+const keys=[49,50,51,52,53,54,55,56,57,48,222,187];
 let level=[];
 let userInput=[];
 let randomNote;
-let timeOutArray = []
+let timeOutArray = [];
+let speed=2;
 
-function playRandom(){
+function playRandom(speedo){
     keys.forEach((keyPress,i)=>{
         let audio;
         randomNote= keys[Math.floor(Math.random()*11)];
@@ -39,8 +40,8 @@ function playRandom(){
         audio.play();
         setTimeout(()=>{
         audio.pause();
-        },1480)
-    }, i * 1500))   
+        },speedo*1000-50)
+     }, i*speedo*1000))   
         
         
     })
@@ -60,13 +61,13 @@ function playRandomNote(){
 
 
 
+
 function pauseMusic(){
     let audio;
     for (const key of keys){
     audio=document.querySelector(`audio[data-key="${key}"]`);
     audio.currentTime=100000;
     audio.pause();
-    console.log(audio);
     }
 }
 
@@ -74,7 +75,10 @@ function checkUser(notes,userNotes){
     let note=notes.join("");
     let userNote=userNotes;
     function check(){if(note===userNote){
+        speed=speed*0.8;
         console.log("awesome")
+        console.log(speed);
+
     }
     else console.log("no awesome :(");
 
@@ -91,28 +95,38 @@ function checkUser(notes,userNotes){
     console.log(note+"+"+userNote)
 }
   
-
+function userKey(e) {
+    console.log("Hello")
+    userInput.push(e.keyCode);
+    // console.log(userInput);
+}
   
 document.querySelector(".random").onclick=  function(){
-    
+    // console.log(userInput);
+
+    document.removeEventListener("keydown", userKey)
+
+    userInput=[];
     level=[];
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
-    playRandom();
-    document.addEventListener("keydown",function(e){
-        userInput.push(e.keyCode);
-    })
+    playRandom(speed);
+    document.addEventListener("keydown", userKey)
 
-    console.log(userInput)
 ;}
     
 document.querySelector(".check").onclick=  function(){
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
-        checkUser(level,userInput);
+        checkUser([49,49],userInput);
+        userInput=[];
+
         
 ;}
+
 document.querySelector(".ranKey").onclick=function(){
     pauseMusic();
+    document.removeEventListener("keydown", userKey)
+
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
     level=[];
