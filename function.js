@@ -19,7 +19,7 @@ function playRandom(speedo,times){
 
         setTimeout(()=>{
         audio.pause();
-        key.classList.remove(".playing")
+        key.classList.remove("playing")
         },speedo*1000-50)
      }, i*speedo*1000))   
         
@@ -100,6 +100,5 @@ function checkUser(notes,userNotes){
 function userKey(e) {
     console.log("Hello")
     userInput.push(e.keyCode);
-    return false;
-    // console.log(userInput);
+
 }

@@ -2,13 +2,13 @@
 document.querySelector(".random").onclick=  function(){
     // console.log(userInput);
 
-    document.removeEventListener("keydown", userKey)
+    document.removeEventListener("keyup", userKey)
 
     userInput=[];
     randomSequence=[];
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
     playRandom(speed,sequence);
-    document.addEventListener("keydown", userKey)
+    document.addEventListener("keyup", userKey)
     
 
 ;}
@@ -24,13 +24,13 @@ document.querySelector(".check").onclick=  function(){
 
 document.querySelector(".ranKey").onclick=function(){
     pauseMusic();
-    document.removeEventListener("keydown", userKey)
+    document.removeEventListener("keyup", userKey)
 
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
     randomSequence=[];
     playRandomNote();
-    document.addEventListener("keydown",function(e){
+    document.addEventListener("keyup",function(e){
 
         userInput=""+e.keyCode;
     })

@@ -34,11 +34,10 @@
       background: black;
   }
   .playing{
-background: 
-opacity:0.1; 
+
 border-style: solid;
-border-width: thin;
-border-color: red;
+border-width: 10px;
+border-color: yellow;
 
   }
   .pads > div {
@@ -120,8 +119,8 @@ border-color: red;
   }
   .pad12 {
     display: flex;
-    justify-content: center;
-    align-items: center;
+     justify-content: center;
+      align-items: center;
 
     background: red;
   }
