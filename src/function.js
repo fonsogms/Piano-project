@@ -30,6 +30,14 @@ function playRandom(speedo,times){
     return randomSequence;
 }
 
+function cleanKeyboard(){
+  let  pads = document.querySelectorAll(".pads div");
+pads.forEach((pad, index) => {
+        pad.classList.remove("playing");
+        });
+     
+    
+}
 function playRandomNote(){
     let audio;
     randomNote=keys[Math.floor(Math.random()*11)];

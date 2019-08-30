@@ -3,7 +3,7 @@ document.querySelector(".random").onclick=  function(){
     // console.log(userInput);
 
     document.removeEventListener("keyup", userKey)
-
+    cleanKeyboard();
     userInput=[];
     randomSequence=[];
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
@@ -24,8 +24,10 @@ document.querySelector(".check").onclick=  function(){
 
 document.querySelector(".ranKey").onclick=function(){
     pauseMusic();
-    document.removeEventListener("keyup", userKey)
+    cleanKeyboard();
 
+    document.removeEventListener("keyup", userKey)
+    
 
     randomSequence=[];
     playRandomNote();
@@ -75,6 +77,8 @@ window.addEventListener("keyup",function(e){
 })
 document.querySelector(".stop").onclick=function(){
     pauseMusic();
+    cleanKeyboard();
+
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
 }
