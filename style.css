@@ -247,9 +247,7 @@ border-color: yellow;
     background-color: red;
   
 }
-.hard:active{
-    border: 10px solid #4CAF50;
-}
+
 
 .easy{
     margin:5px;

@@ -1,6 +1,5 @@
 
-
-const keys=[49,50,51,52,53,54,55,56,57,48,222,187];
+const keys=[67,68,69,70,71,65,66];
 let randomSequence=[];
 let userInput=[];
 let randomNote;

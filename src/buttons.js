@@ -82,3 +82,5 @@ document.querySelector(".stop").onclick=function(){
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
 }
+
+
