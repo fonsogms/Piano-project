@@ -53,6 +53,9 @@
     flex-direction: column;
     align-content: space-between;
 }
+.central{
+
+}
 .dificulty{
     display: flex;
     text-align: center;
@@ -65,10 +68,14 @@ padding:5px;
 }
 .levels{
     display: flex;
+    margin:10px;
     justify-content: space-around;
     text-align: center;
 
 
+}
+.levels>div{
+    margin: 10px;
 }
   body {
     font-family: "Raleway", sans-serif;
@@ -102,6 +109,20 @@ padding:5px;
   }
   .pads{
       background: black;
+  }
+  .keysGuide{
+      display: flex;
+      justify-content: space-between;
+
+  }
+  .keysGuide>h2{
+      width: 8.2vw;
+      text-align: center;
+      font-size: 5 px;
+
+  }
+  .test{
+    list-style-type: none;
   }
   .playing{
 
@@ -207,7 +228,37 @@ border-color: yellow;
       color: white;
       text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
+
+.btn{
+    padding: 10px 24px;
+    background-color: #008CBA;
+    border-radius: 4px;
+        color: white;
+    text-align: center;
+    text-decoration: aqua;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+.hard{
+    margin:5px;
+    background-color: red;
   
+}
+.hard:active{
+    border: 10px solid #4CAF50;
+}
+
+.easy{
+    margin:5px;
+
+    background-color: #60d394;
+}
+li:nth-of-type(1){
+    padding: 0.3rem;
+}
   
 
   
