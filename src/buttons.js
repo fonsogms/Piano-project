@@ -1,10 +1,8 @@
   
 document.querySelector(".random").onclick=  function(){
     // console.log(userInput);
-
     document.removeEventListener("keyup", userKey)
     cleanKeyboard();
-    userInput=[];
     randomSequence=[];
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
     playRandom(speed,sequence);
@@ -17,8 +15,6 @@ document.querySelector(".check").onclick=  function(){
     timeOutArray.forEach(timeOut=>clearInterval(timeOut))
 
         checkUser(randomSequence,userInput);
-        userInput=[];
-
         
 ;}
 
@@ -33,7 +29,8 @@ document.querySelector(".ranKey").onclick=function(){
     playRandomNote();
     document.addEventListener("keyup",function(e){
 
-        userInput=""+e.keyCode;
+        userInput=[e.keyCode];
+        
     })
 }
 
