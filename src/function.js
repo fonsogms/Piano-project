@@ -4,7 +4,8 @@ function playRandom(speedo,times){
         let audio;
         let key;
         
-        randomNote= keys[Math.floor(Math.random()*11)];
+        randomNote= keys[Math.floor(Math.random()*(keys.length-1))];
+        console.log(randomNote)
         audio=document.querySelector(`audio[data-key="${randomNote}"]`)
         key=document.querySelector(`div[data-key="${randomNote}"]`);
 
@@ -40,7 +41,7 @@ pads.forEach((pad, index) => {
 }
 function playRandomNote(){
     let audio;
-    randomNote=keys[Math.floor(Math.random()*11)];
+    randomNote=keys[Math.floor(Math.random()*(keys.length-1))];
     audio=document.querySelector(`audio[data-key="${randomNote}"]`);
     key=document.querySelector(`div[data-key="${randomNote}"]`);
     key.classList.add("playing");
