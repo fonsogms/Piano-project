@@ -7,37 +7,72 @@
       display: flex;
       justify-content: center;
       justify-content: space-around;
+      align-items: center;  
+      height: 70vh;
   }
-  .options{
-      display: flex;
-      justify-content: flex-start;
+
+  .container>div{
+      width: 30vw;
+      height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;    
   }
+
+
   .players{
       display: flex;
       justify-content: space-between;
       text-align: left;
 
   }
-  .playSeq{
-      display: flex;
-      flex-direction: column;
-      align-content: space-between
+
+  .players>div{
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+
+  }
+
+/*   .playSeq{
+    
+
+    
   }
   .playKey{
     display: flex;
+    text-align: center;
+
     flex-direction: column;
 }
+
+.playStop{
+
+} */
+
 .central{
     display:flex;
+    text-align: center;
     flex-direction: column;
     justify-content: center;
 }
 .dificulty{
     display: flex;
+    text-align: center;
+
     flex-direction: column;
+    align-content: space-between;
+}
+.dificulty>div{
+padding:5px;
 }
 .levels{
     display: flex;
+    justify-content: space-around;
+    text-align: center;
+
 
 }
   body {
@@ -45,7 +80,7 @@
   }
   
   .app {
-    min-height: 60vh;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
